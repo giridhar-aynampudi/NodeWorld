@@ -5,3 +5,4 @@ function hello(name) {
 hello("giridhar");
 
 // console.log(window);
+console.log(module);
