@@ -1,3 +1,5 @@
+const log = require("./logger");
+
 function hello(name) {
   console.log("hello " + name);
 }
@@ -5,4 +7,4 @@ function hello(name) {
 hello("giridhar");
 
 // console.log(window);
-console.log(module);
+log.log("yo");
