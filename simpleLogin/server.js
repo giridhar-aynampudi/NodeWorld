@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const bcrypt = require("bcrypt");
-// import './views/index';
+const initializePassport = require("./passport_config");
+const passport = require('passport');
+initializePassport(passport);
 app.set("view-engine", 'ejs')
 app.use(express.urlencoded({extended: false}))
 
