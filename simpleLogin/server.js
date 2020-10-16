@@ -8,6 +8,7 @@ const initializePassport = require("./passport_config");
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
+const methodOverride = require('method-override')
 
 initializePassport(
     passport, 
@@ -26,6 +27,7 @@ app.use(session ({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(methodOverride('_method'))
 const users = [];
 
 app.get('/',checkAuthenticated, (req,res) => {
@@ -62,6 +64,11 @@ app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
     failureRedirect:'/login',
     failureFlash:true
 }));
+
+app.delete('/logout', (req,res) => {
+    req.logOut()
+    res.redirect('/login')
+})
 
 function checkAuthenticated(req,res, next) {
     if(req.isAuthenticated()) {
