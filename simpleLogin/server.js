@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 // import './views/index';
 app.set("view-engine", 'ejs')
+app.use(express.urlencoded({extended: false}))
+
 app.get('/', (req,res) => {
     res.render('index.ejs',{name: "Giridhar"});
 })
@@ -16,5 +18,9 @@ app.get('/register', (req,res) =>{
 
 app.post('/register',(req,res) => {
     console.log("register", req.body);
+});
+
+app.post("/login", (req,res) => {
+console.log("login", req.body.email)
 })
 app.listen(3000);
